@@ -68,111 +68,115 @@ while True:
         print("Saindo do sistema. Até mais!")
         break
 
-    if esc == "1":
-
-        limpar_tela()
-
-        origem, destino, peso, valor, status = cadastro()
-
-        limpar_tela()
-
-        print(f"\nConfirme os dados do frete")
-        print(f"Origem: {origem}")
-        print(f"Destino: {destino}")
-        print(f"Peso: {peso} kg")
-        print(f"Valor: R$ {valor}")
-        print(f"Status: {status}")
-
-        conf = input(f"\nDigite 'S' para confirmar ou 'N' para cancelar: ").upper()
-        
-        if conf == "S":
-            
-            novo_frete = { 
-
-                "origem": origem,
-                "destino": destino,
-                "peso": peso,
-                "valor": valor,
-                "status": status
-
-            }
-
-            fretes.append(novo_frete)
-
-            print("Frete cadastrado com sucesso!")
-
-        if conf == "N":
+    try:
+        if esc == "1":
 
             limpar_tela()
 
-            print("Cadastro cancelado. Voltando ao menu.")
-            continue
+            origem, destino, peso, valor, status = cadastro()
 
+            limpar_tela()
 
-    if esc == "1":  
-        cadastrar_frete()
+            print(f"\nConfirme os dados do frete")
+            print(f"Origem: {origem}")
+            print(f"Destino: {destino}")
+            print(f"Peso: {peso} kg")
+            print(f"Valor: R$ {valor}")
+            print(f"Status: {status}")
 
-    elif esc == "2":
-
-        limpar_tela()
-
-        if len(fretes) == 0:
-            print("Nenhum frete cadastrado.")
-
-        else:
-            print("Fretes cadastrados:")
-
-            for i, frete in enumerate(fretes):
-                print(f"\nFrete {i + 1}")
+            conf = input(f"\nDigite 'S' para confirmar ou 'N' para cancelar: ").upper()
             
-            esc2 = int(input(f"\nDigite o número do frete para ver detalhes ou '0' para voltar ao menu: "))
+            if conf == "S":
+                
+                novo_frete = { 
 
-            if esc2 == 0:
+                    "origem": origem,
+                    "destino": destino,
+                    "peso": peso,
+                    "valor": valor,
+                    "status": status
+
+                }
+
+                fretes.append(novo_frete)
+
+                print("Frete cadastrado com sucesso!")
+
+            if conf == "N":
+
+                limpar_tela()
+
+                print("Cadastro cancelado. Voltando ao menu.")
                 continue
+
+
+        if esc == "1":  
+            cadastrar_frete()
+
+        elif esc == "2":
+
+            limpar_tela()
+
+            if len(fretes) == 0:
+                print("Nenhum frete cadastrado.")
 
             else:
-                
-                if esc2 > 0 and esc2 <= len(fretes):
-                    frete = fretes[esc2 - 1]
+                print("Fretes cadastrados:")
 
-                    print(f"\nDetalhes do frete: ")
-                    print(f"Origem: {frete['origem']}")
-                    print(f"Destino: {frete['destino']}")
-                    print(f"Peso: {frete['peso']} kg")
-                    print(f"Valor: R$ {frete['valor']}")
-                    print(f"Status: {frete['status']}")
+                for i, frete in enumerate(fretes):
+                    print(f"\nFrete {i + 1}")
+                
+                esc2 = int(input(f"\nDigite o número do frete para ver detalhes ou '0' para voltar ao menu: "))
+
+                if esc2 == 0:
+                    continue
 
                 else:
-                    print("Número de frete inválido. Voltando ao menu.")
-                continue
+                    
+                    if esc2 > 0 and esc2 <= len(fretes):
+                        frete = fretes[esc2 - 1]
 
-    elif esc == "3":
+                        print(f"\nDetalhes do frete: ")
+                        print(f"Origem: {frete['origem']}")
+                        print(f"Destino: {frete['destino']}")
+                        print(f"Peso: {frete['peso']} kg")
+                        print(f"Valor: R$ {frete['valor']}")
+                        print(f"Status: {frete['status']}")
 
-        limpar_tela()
+                    else:
+                        print("Número de frete inválido. Voltando ao menu.")
+                    continue
 
-        if len(fretes) == 0:
-            print("Nenhum frete cadastrado.")
+        elif esc == "3":
 
-        else:
-            print("Fretes cadastrados:")
+            limpar_tela()
 
-            for i, frete in enumerate(fretes):
-                print(f"Frete {i + 1}")
-            
-            esc3 = int(input("Digite o número do frete para alterar o status ou '0' para voltar ao menu: "))
+            if len(fretes) == 0:
+                print("Nenhum frete cadastrado.")
 
-            if esc3 == 0:
-                continue
-                
             else:
+                print("Fretes cadastrados:")
+
+                for i, frete in enumerate(fretes):
+                    print(f"Frete {i + 1}")
                 
-                if esc3 > 0 and esc3 <= len(fretes):
-                    frete = fretes[esc3 - 1]
+                esc3 = int(input("Digite o número do frete para alterar o status ou '0' para voltar ao menu: "))
 
-                    novo_status = input("Digite o novo status do frete (pendente, em trânsito, entregue): ")
-                    frete['status'] = novo_status
-
-                    print("Status do frete atualizado com sucesso!")
-
+                if esc3 == 0:
+                    continue
+                    
                 else:
-                    print("Número de frete inválido. Voltando ao menu.")    
+                    
+                    if esc3 > 0 and esc3 <= len(fretes):
+                        frete = fretes[esc3 - 1]
+
+                        novo_status = input("Digite o novo status do frete (pendente, em trânsito, entregue): ")
+                        frete['status'] = novo_status
+
+                        print("Status do frete atualizado com sucesso!")
+
+                    else:
+                        print("Número de frete inválido. Voltando ao menu.")  
+
+    except ValueError: 
+
