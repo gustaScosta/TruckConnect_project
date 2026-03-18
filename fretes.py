@@ -1,9 +1,38 @@
+import os
+fretes = []
+
 print("Bem-vindo ao sistema de cadastro de fretes!")
 print(f"\nEscolha uma opção: ")
 
-fretes = []
+def limpar_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def cadastrar_frete():
+
+
+    origem = input("Digite a origem do frete: ")
+    destino = input("Digite o destino do frete: ")
+    peso = float(input("Digite o peso do frete (em kg): "))
+    valor = float(input("Digite o valor do frete: "))
+    status = input("Digite o status do frete (pendente, em trânsito, entregue): ")
+    
+    
+    novo_frete = { 
+
+        "origem": origem,
+        "destino": destino,
+        "peso": peso,
+        "valor": valor,
+        "status": status
+    }
+
+    fretes.append(novo_frete)
+    
+    print("Frete cadastrado com sucesso!")
 
 while True:
+    limpar_terminal()
+
     print("1 - Cadastrar novo frete")
     print("2 - Listar fretes cadastrados")
     print("3 - Alterar status de um frete")
@@ -15,31 +44,9 @@ while True:
         print("Saindo do sistema. Até mais!")
         break
 
-    if esc == "1":
-        def cadastrar_frete(origem, destino, peso, valor, status):
-
-            origem = input("Digite a origem do frete: ")
-            destino = input("Digite o destino do frete: ")
-            peso = float(input("Digite o peso do frete (em kg): "))
-            valor = float(input("Digite o valor do frete: "))
-            status = input("Digite o status do frete (pendente, em trânsito, entregue): ")
-            
-            cadastrar_frete(origem, destino, peso, valor, status)
-
-            global fretes 
-            novo_frete = { 
-
-                "origem": origem,
-                "destino": destino,
-                "peso": peso,
-                "valor": valor,
-                "status": status
-        }
-
-            fretes.append(novo_frete)
-            
-            print("Frete cadastrado com sucesso!")
-
+    if esc == "1":  
+        cadastrar_frete()
+        
 
     elif esc == "2":
 
@@ -72,5 +79,4 @@ while True:
                     print("Número de frete inválido. Voltando ao menu.")
 
 
-        
-        
+       
