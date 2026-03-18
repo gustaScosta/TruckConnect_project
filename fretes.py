@@ -1,3 +1,20 @@
+import os
+
+def limpar_tela():
+    os.system("cls")
+
+
+def cadastro():
+
+    origem = input("Digite a origem do frete: ")
+    destino = input("Digite o destino do frete: ")
+    peso = float(input("Digite o peso do frete (em kg): "))
+    valor = float(input("Digite o valor do frete: "))
+    status = input("Digite o status do frete (pendente, em trânsito, entregue): ")           
+
+    return origem, destino, peso, valor, status
+
+
 print("Bem-vindo ao sistema de cadastro de fretes!")
 print(f"\nEscolha uma opção: ")
 
@@ -5,12 +22,12 @@ fretes = []
 
 while True:
 
-    print("1 - Cadastrar novo frete")
+    print(f"\n1 - Cadastrar novo frete")
     print("2 - Listar fretes cadastrados")
     print("3 - Alterar status de um frete")
     print("4 - Sair")
 
-    esc = str(input("Digite o número da opção desejada: "))
+    esc = (input("Digite o número da opção desejada: "))
 
     if esc == "4":
 
@@ -19,18 +36,23 @@ while True:
 
     if esc == "1":
 
-        def cadastrar_frete(origem, destino, peso, valor, status):
+        limpar_tela()
 
-            origem = input("Digite a origem do frete: ")
-            destino = input("Digite o destino do frete: ")
-            peso = float(input("Digite o peso do frete (em kg): "))
-            valor = float(input("Digite o valor do frete: "))
-            status = input("Digite o status do frete (pendente, em trânsito, entregue): ")
+        origem, destino, peso, valor, status = cadastro()
+
+        limpar_tela()
+
+        print(f"\nConfirme os dados do frete")
+        print(f"Origem: {origem}")
+        print(f"Destino: {destino}")
+        print(f"Peso: {peso} kg")
+        print(f"Valor: R$ {valor}")
+        print(f"Status: {status}")
+
+        conf = input(f"\nDigite 'S' para confirmar ou 'N' para cancelar: ").upper()
+        
+        if conf == "S":
             
-            cadastrar_frete(origem, destino, peso, valor, status)
-
-            global fretes 
-
             novo_frete = { 
 
                 "origem": origem,
@@ -39,14 +61,23 @@ while True:
                 "valor": valor,
                 "status": status
 
-        }
+            }
 
             fretes.append(novo_frete)
-            
+
             print("Frete cadastrado com sucesso!")
+
+        if conf == "N":
+
+            limpar_tela()
+
+            print("Cadastro cancelado. Voltando ao menu.")
+            continue
 
 
     elif esc == "2":
+
+        limpar_tela()
 
         if len(fretes) == 0:
             print("Nenhum frete cadastrado.")
@@ -55,11 +86,11 @@ while True:
             print("Fretes cadastrados:")
 
             for i, frete in enumerate(fretes):
-                print(f"Frete {i + 1}")
+                print(f"\nFrete {i + 1}")
             
-            esc2 = str(input("Digite o número do frete para ver detalhes ou '0' para voltar ao menu: "))
+            esc2 = int(input(f"\nDigite o número do frete para ver detalhes ou '0' para voltar ao menu: "))
 
-            if esc2 == "0":
+            if esc2 == 0:
                 continue
 
             else:
@@ -80,6 +111,8 @@ while True:
 
     elif esc == "3":
 
+        limpar_tela()
+
         if len(fretes) == 0:
             print("Nenhum frete cadastrado.")
 
@@ -89,9 +122,9 @@ while True:
             for i, frete in enumerate(fretes):
                 print(f"Frete {i + 1}")
             
-            esc3 = str(input("Digite o número do frete para alterar o status ou '0' para voltar ao menu: "))
+            esc3 = int(input("Digite o número do frete para alterar o status ou '0' para voltar ao menu: "))
 
-            if esc3 == "0":
+            if esc3 == 0:
                 continue
 
             else:
