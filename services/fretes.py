@@ -179,4 +179,3 @@ while True:
                         print("Número de frete inválido. Voltando ao menu.")  
 
     except ValueError: 
-
