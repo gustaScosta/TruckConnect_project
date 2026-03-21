@@ -14,7 +14,7 @@ def login_empresa():
     print('\nDados recebidos com sucesso.')
     print(f'Login digitado: {num_login}')
     print(f'Senha digitada: {senha_login}')
-    
+
     return num_login, senha_login
 
 def login_pareiro():
@@ -47,6 +47,7 @@ def escolha_cadastro():
         print('preisamos de algumas informações para realizar o seu cadastro')
         print('1. Empresa')
         print('2. pareiro')
+        print('3. voltar ao menu principal')
         try:
             esco_cadatro = int(input('escolha qual seu tipo de cadastro... '))
         except ValueError:
@@ -57,9 +58,13 @@ def escolha_cadastro():
         if esco_cadatro == 1:
             limpar_terminal()
             cadastro_empresa()
+        elif esco_cadatro == 2:
+            pass
+        elif esco_cadatro == 3:
+            pass
 
 
-
+        
 def menu_principal():
     while True:
         print("""
