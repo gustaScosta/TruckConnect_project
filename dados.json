@@ -1,0 +1,11 @@
+{
+    "empresas": {
+        "43.201.151/0001-10": {
+            "nome": "cummins",
+            "senha": "cucu123",
+            "cnpj": "43.201.151/0001-10"
+        }
+    },
+    "parceiros": {},
+    "fretes": {}
+}
