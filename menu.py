@@ -17,7 +17,7 @@ def login_empresa():
 
     return num_login, senha_login
 
-def login_pareiro():
+def login_parceiro():
     pass
 
 def cadastro_empresa():
@@ -61,10 +61,10 @@ def escolha_cadastro():
         elif esco_cadatro == 2:
             pass
         elif esco_cadatro == 3:
-            pass
+            return
 
 
-        
+
 def menu_principal():
     while True:
         print("""
@@ -107,6 +107,7 @@ def menu_principal():
         elif ini_servico == 4:
             limpar_terminal()
             print('Saindo do sistema...')
+            limpar_terminal()
             break
 
         else:
