@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import os
 
 
@@ -181,4 +179,3 @@ while True:
                         print("Número de frete inválido. Voltando ao menu.")  
 
     except ValueError: 
->>>>>>> Stashed changes
