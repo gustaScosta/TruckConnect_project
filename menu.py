@@ -2,7 +2,6 @@ import json
 
 import os
 
-
 def limpar_terminal():
     os.system('cls')
 
@@ -19,6 +18,50 @@ def login_empresa():
 
 def login_parceiro():
     pass
+
+def cadastro_parceiro():
+    while True:
+        print('preencha os campos a seguir corretamente:')
+        cpf = (input('CPF (somente numeros): '))
+        cnh = input('numero da CNH: ')
+        nome = input('Nome: ')
+        data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
+        senha = input('senha: ')
+
+        print(f'confirme seu dados...\n')
+        print(f'CPF: {cpf}')
+        print(f'CNH: {cnh}')
+        print(f'Nome: {nome}')
+        print(f'Data: {data}')
+        print(f'Senha: {senha}')
+        
+        try:
+            redef = (input('caso seu cadastro esteja correto pressione "S" caso deseje reiniciar o processo pressione "N" : ')).upper()
+     
+        except ValueError:
+            limpar_terminal()
+            print('Opção inválida.')
+            input('Pressione Enter para continuar...')
+            continue
+
+        if redef == 'S':
+
+            with open("dados.json", "r", encoding="utf-8") as arquivo:
+                dados = json.load(arquivo)
+
+            dados['parceiros'][cpf] = {
+                'nome': nome,
+                'data': data,
+                'senha': senha,
+                'cnh': cnh
+            }
+
+            with open("dados.json", "w", encoding="utf-8") as arquivo:
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+            return
+        elif redef == 'N':
+            continue
+            
 
 def cadastro_empresa():
     print('preencha os campos a seguir corretamente:')
@@ -37,9 +80,6 @@ def cadastro_empresa():
 
     with open("dados.json", "w", encoding="utf-8") as arquivo:
         json.dump(dados, arquivo, indent=4, ensure_ascii=False)
-    
-
-
 
 def escolha_cadastro():
     while True:
@@ -58,12 +98,13 @@ def escolha_cadastro():
         if esco_cadatro == 1:
             limpar_terminal()
             cadastro_empresa()
+            return
         elif esco_cadatro == 2:
-            pass
+            limpar_terminal()
+            cadastro_parceiro()
+            return
         elif esco_cadatro == 3:
             return
-
-
 
 def menu_principal():
     while True:

@@ -6,6 +6,13 @@
             "cnpj": "43.201.151/0001-10"
         }
     },
-    "parceiros": {},
+    "parceiros": {
+        "54531307844": {
+            "nome": "gustavo de souza costa",
+            "data": "05/10/2007",
+            "senha": "gugu",
+            "cnh": "54523659"
+        }
+    },
     "fretes": {}
 }
