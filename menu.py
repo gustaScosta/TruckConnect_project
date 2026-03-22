@@ -20,25 +20,48 @@ def login_parceiro():
     pass
 
 def cadastro_parceiro():
-    print('preencha os campos a seguir corretamente:')
-    cpf = (input('CPF (somente numeros): '))
-    cnh = input('numero da CNH: ')
-    nome = input('Nome: ')
-    data = input('data de nascimento: ')
-    senha = input('senha: ')
+    while True:
+        print('preencha os campos a seguir corretamente:')
+        cpf = (input('CPF (somente numeros): '))
+        cnh = input('numero da CNH: ')
+        nome = input('Nome: ')
+        data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
+        senha = input('senha: ')
 
-    with open("dados.json", "r", encoding="utf-8") as arquivo:
-        dados = json.load(arquivo)
+        print(f'confirme seu dados...\n')
+        print(f'CPF: {cpf}')
+        print(f'CNH: {cnh}')
+        print(f'Nome: {nome}')
+        print(f'Data: {data}')
+        print(f'Senha: {senha}')
+        
+        try:
+            redef = (input('caso seu cadastro esteja correto pressione "S" caso deseje reiniciar o processo pressione "N" : ')).upper()
+     
+        except ValueError:
+            limpar_terminal()
+            print('Opção inválida.')
+            input('Pressione Enter para continuar...')
+            continue
 
-    dados['parceiros'][cpf] = {
-        'nome': nome,
-        'data': data,
-        'senha': senha,
-        'cnh': cnh
-    }
+        if redef == 'S':
 
-    with open("dados.json", "w", encoding="utf-8") as arquivo:
-        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+            with open("dados.json", "r", encoding="utf-8") as arquivo:
+                dados = json.load(arquivo)
+
+            dados['parceiros'][cpf] = {
+                'nome': nome,
+                'data': data,
+                'senha': senha,
+                'cnh': cnh
+            }
+
+            with open("dados.json", "w", encoding="utf-8") as arquivo:
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+            return
+        elif redef == 'N':
+            continue
+            
 
 def cadastro_empresa():
     print('preencha os campos a seguir corretamente:')
@@ -75,9 +98,11 @@ def escolha_cadastro():
         if esco_cadatro == 1:
             limpar_terminal()
             cadastro_empresa()
+            return
         elif esco_cadatro == 2:
             limpar_terminal()
             cadastro_parceiro()
+            return
         elif esco_cadatro == 3:
             return
 
