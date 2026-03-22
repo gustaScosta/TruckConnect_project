@@ -2,7 +2,6 @@ import json
 
 import os
 
-
 def limpar_terminal():
     os.system('cls')
 
@@ -19,6 +18,27 @@ def login_empresa():
 
 def login_parceiro():
     pass
+
+def cadastro_parceiro():
+    print('preencha os campos a seguir corretamente:')
+    cpf = (input('CPF (somente numeros): '))
+    cnh = input('numero da CNH: ')
+    nome = input('Nome: ')
+    data = input('data de nascimento: ')
+    senha = input('senha: ')
+
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+        dados = json.load(arquivo)
+
+    dados['parceiros'][cpf] = {
+        'nome': nome,
+        'data': data,
+        'senha': senha,
+        'cnh': cnh
+    }
+
+    with open("dados.json", "w", encoding="utf-8") as arquivo:
+        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
 
 def cadastro_empresa():
     print('preencha os campos a seguir corretamente:')
@@ -37,9 +57,6 @@ def cadastro_empresa():
 
     with open("dados.json", "w", encoding="utf-8") as arquivo:
         json.dump(dados, arquivo, indent=4, ensure_ascii=False)
-    
-
-
 
 def escolha_cadastro():
     while True:
@@ -59,11 +76,10 @@ def escolha_cadastro():
             limpar_terminal()
             cadastro_empresa()
         elif esco_cadatro == 2:
-            pass
+            limpar_terminal()
+            cadastro_parceiro()
         elif esco_cadatro == 3:
             return
-
-
 
 def menu_principal():
     while True:
