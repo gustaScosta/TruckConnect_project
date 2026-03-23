@@ -28,6 +28,18 @@ def cadastro_parceiro():
         data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
         senha = input('senha: ')
 
+        with open('dados.jason', 'r', encoding='utf-8') as arquivos:
+            dados = json.load(arquivo)
+        
+        parceiros = dados['parceiro']
+
+        if cpf in parceiros:
+            print('CPF ja cadastrado. ')
+            print('refaça o cadastro ou faça o login')
+            input('pressione enter para continuar... ')
+            limpar_terminal()
+            continue 
+
         print(f'confirme seu dados...\n')
         print(f'CPF: {cpf}')
         print(f'CNH: {cnh}')
