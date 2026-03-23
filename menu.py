@@ -86,7 +86,7 @@ def escolha_cadastro():
 
         print('preisamos de algumas informações para realizar o seu cadastro')
         print('1. Empresa')
-        print('2. pareiro')
+        print('2. parceiro')
         print('3. voltar ao menu principal')
         try:
             esco_cadatro = int(input('escolha qual seu tipo de cadastro... '))
