@@ -37,6 +37,8 @@ def cadastro_parceiro():
             print('CPF ja cadastrado. ')
             print('refaça o cadastro ou faça o login')
             input('pressione enter para continuar... ')
+            with open('dados.json', 'r', encoding='utf-8') as arquivos:
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
             limpar_terminal()
             continue 
 
