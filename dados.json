@@ -9,15 +9,9 @@
     "parceiros": {
         "54531307844": {
             "nome": "gustavo de souza costa",
-            "data": "05/10/2007",
+            "data": "05102007",
             "senha": "gugu",
             "cnh": "54523659"
-        },
-        "23465487610": {
-            "nome": "walmir",
-            "data": "11092006",
-            "senha": "fghjk",
-            "cnh": "9876543"
         }
     },
     "fretes": {}

@@ -27,20 +27,33 @@ def cadastro_parceiro():
         nome = input('Nome: ')
         data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
         senha = input('senha: ')
-
-        with open('dados.jason', 'r', encoding='utf-8') as arquivos:
-            dados = json.load(arquivo)
+#authenticação de cpf duplicado
+        with open('dados.json', 'r', encoding='utf-8') as arquivos:
+            dados = json.load(arquivos)
         
-        parceiros = dados['parceiro']
+        parceiros = dados['parceiros']
 
         if cpf in parceiros:
-            print('CPF ja cadastrado. ')
+            print('CPF ja cadastrado')
             print('refaça o cadastro ou faça o login')
             input('pressione enter para continuar... ')
             with open('dados.json', 'r', encoding='utf-8') as arquivos:
-                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+                json.load(arquivos)
+
             limpar_terminal()
             continue 
+
+
+        cnh_existe = False
+        for parceiro in parceiros.values():
+            if parceiro['cnh'] == cnh:
+                cnh_existe = True
+                break
+        if cnh_existe == True:
+            print('cnh ja cadastrado')
+            print('reinicie o processo de cadastro')
+            limpar_terminal()
+            continue
 
         print(f'confirme seu dados...\n')
         print(f'CPF: {cpf}')
