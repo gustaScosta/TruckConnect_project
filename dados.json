@@ -1,23 +1,11 @@
 {
-    "empresas": {
-        "43.201.151/0001-10": {
-            "nome": "cummins",
-            "senha": "cucu123",
-            "cnpj": "43.201.151/0001-10"
-        }
-    },
+    "empresas": {},
     "parceiros": {
         "54531307844": {
-            "nome": "gustavo de souza costa",
+            "nome": "GUSTAVO_DE_SOUZA_COSTA",
             "data": "05102007",
-            "senha": "gugu",
-            "cnh": "54523659"
-        },
-        "48452775814": {
-            "nome": "pua",
-            "data": "222222",
-            "senha": "1",
-            "cnh": "0000000"
+            "senha": "54531307844",
+            "cnh": "54531307844"
         }
     },
     "fretes": {}

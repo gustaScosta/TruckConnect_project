@@ -17,14 +17,18 @@ def login_empresa():
     return num_login, senha_login
 
 def login_parceiro():
-    pass
+    print('precisamos de algumas informações para continuar com seu login:')
+    cpf = int(input('CPF: '))
+    senha = input('Senha: ')
+    with open('dados.json', 'r', encoding='utf-8') as arquivos:
+        dados = json.load(arquivos)
 
 def cadastro_parceiro():
     while True:
         print('preencha os campos a seguir corretamente:')
         cpf = (input('CPF (somente numeros): '))
         cnh = input('numero da CNH: ')
-        nome = input('Nome: ')
+        nome = input('Nome: ').upper().replace(' ','_')
         data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
         senha = input('senha: ')
 #authenticação de cpf duplicado
@@ -182,3 +186,10 @@ def menu_principal():
             limpar_terminal()
             print('Opção inválida.')
             input('Pressione Enter para continuar...')
+
+
+def main():
+    login_parceiro()
+
+if __name__ == '__main__':
+    main()
