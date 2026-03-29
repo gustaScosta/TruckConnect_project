@@ -17,16 +17,47 @@ def login_empresa():
     return num_login, senha_login
 
 def login_parceiro():
-    pass
+    print('precisamos de algumas informações para continuar com seu login:')
+    cpf = int(input('CPF: '))
+    senha = input('Senha: ')
+    with open('dados.json', 'r', encoding='utf-8') as arquivos:
+        dados = json.load(arquivos)
 
 def cadastro_parceiro():
     while True:
         print('preencha os campos a seguir corretamente:')
         cpf = (input('CPF (somente numeros): '))
         cnh = input('numero da CNH: ')
-        nome = input('Nome: ')
+        nome = input('Nome: ').upper().replace(' ','_')
         data = input('data de nascimento: ').replace('/','').replace('-','').replace(' ','')
         senha = input('senha: ')
+#authenticação de cpf duplicado
+        with open('dados.json', 'r', encoding='utf-8') as arquivos:
+            dados = json.load(arquivos)
+        
+        parceiros = dados['parceiros']
+
+        if cpf in parceiros:
+            print('CPF ja cadastrado')
+            print('refaça o cadastro ou faça o login')
+            input('pressione enter para continuar... ')
+            with open('dados.json', 'r', encoding='utf-8') as arquivos:
+                json.load(arquivos)
+
+            limpar_terminal()
+            continue 
+
+
+        cnh_existe = False
+        for parceiro in parceiros.values():
+            if parceiro['cnh'] == cnh:
+                cnh_existe = True
+                break
+        if cnh_existe == True:
+            print('cnh ja cadastrado')
+            print('reinicie o processo de cadastro')
+            limpar_terminal()
+            continue
 
         print(f'confirme seu dados...\n')
         print(f'CPF: {cpf}')
@@ -86,7 +117,7 @@ def escolha_cadastro():
 
         print('preisamos de algumas informações para realizar o seu cadastro')
         print('1. Empresa')
-        print('2. pareiro')
+        print('2. parceiro')
         print('3. voltar ao menu principal')
         try:
             esco_cadatro = int(input('escolha qual seu tipo de cadastro... '))
@@ -155,3 +186,10 @@ def menu_principal():
             limpar_terminal()
             print('Opção inválida.')
             input('Pressione Enter para continuar...')
+
+
+def main():
+    login_parceiro()
+
+if __name__ == '__main__':
+    main()
