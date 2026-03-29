@@ -1,3 +1,3 @@
-from menu import menu_principal
+from menu import main
 
-menu_principal()
+main()

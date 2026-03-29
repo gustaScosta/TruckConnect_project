@@ -1,7 +1,8 @@
 import json
 
 import os
-
+def menu_interacao():
+    pass
 def limpar_terminal():
     os.system('cls')
 
@@ -17,11 +18,34 @@ def login_empresa():
     return num_login, senha_login
 
 def login_parceiro():
+    
     print('precisamos de algumas informações para continuar com seu login:')
-    cpf = int(input('CPF: '))
-    senha = input('Senha: ')
-    with open('dados.json', 'r', encoding='utf-8') as arquivos:
-        dados = json.load(arquivos)
+    while True:
+        cpf = int(input('CPF: '))
+        senha = input('Senha: ')
+        with open('dados.json', 'r', encoding='utf-8') as arquivos:
+            dados = json.load(arquivos)
+
+        parceiros = dados['parceiros']
+        senha = dados['parceiros']['senha']
+        if cpf in parceiros:
+            cpf = True
+        else:
+            cpf = False
+        
+        if senha in senha:
+            senha = True
+        else:
+            senha = False
+
+        if cpf and senha == True:
+            print('login bem sucedido')
+            menu_interacao()
+        else:
+            print('login ou senha invalida')
+            input('pressione qualquer tecla para tentar novamente... ')
+
+
 
 def cadastro_parceiro():
     while True:
@@ -169,8 +193,7 @@ def menu_principal():
 
         elif ini_servico == 2:
             limpar_terminal()
-            print('Login de parceiro ainda não foi implementado.')
-            input('Pressione Enter para voltar ao menu...')
+            login_parceiro()
 
         elif ini_servico == 3:
             limpar_terminal()
@@ -189,7 +212,8 @@ def menu_principal():
 
 
 def main():
-    login_parceiro()
+    limpar_terminal()
+    menu_principal()
 
 if __name__ == '__main__':
     main()
