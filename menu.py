@@ -1,7 +1,8 @@
 import json
 
 import os
-
+def menu_interacao():
+    pass
 def limpar_terminal():
     os.system('cls')
 
@@ -17,11 +18,37 @@ def login_empresa():
     return num_login, senha_login
 
 def login_parceiro():
+#coleta de dados    
     print('precisamos de algumas informações para continuar com seu login:')
-    cpf = int(input('CPF: '))
-    senha = input('Senha: ')
-    with open('dados.json', 'r', encoding='utf-8') as arquivos:
-        dados = json.load(arquivos)
+    while True:
+        cpf_digitado = input('CPF: ')
+        senha_digitado = input('Senha: ')
+#abrir dados.json
+        with open('dados.json', 'r', encoding='utf-8') as arquivos:
+            dados = json.load(arquivos)
+ 
+        parceiros = dados['parceiros']
+        
+#conferindo se cpf existe nos dados separando cpf digitado com a variavel criada em True ou False.
+        parceiro = parceiros[cpf_digitado]
+
+        cpf_existe = cpf_digitado in parceiros
+
+#confirmação de senha separação da senha no mesmoi estilo do cpf
+        senha_salva = parceiro['senha']
+
+#comparação de senha salva com digitada
+        senha_conf = senha_digitado == senha_salva
+
+        if cpf_existe and senha_conf:
+            print('Login correto')
+
+        else:
+            print('Login ou senha incorreta')
+
+        with open('dados.json', 'r', encoding='uft-8') as arquivos:
+            dados = json.load(arquivos)
+
 
 def cadastro_parceiro():
     while True:
@@ -169,8 +196,7 @@ def menu_principal():
 
         elif ini_servico == 2:
             limpar_terminal()
-            print('Login de parceiro ainda não foi implementado.')
-            input('Pressione Enter para voltar ao menu...')
+            login_parceiro()
 
         elif ini_servico == 3:
             limpar_terminal()
@@ -189,7 +215,8 @@ def menu_principal():
 
 
 def main():
-    login_parceiro()
+    limpar_terminal()
+    menu_principal()
 
 if __name__ == '__main__':
     main()
