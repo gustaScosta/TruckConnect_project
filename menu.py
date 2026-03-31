@@ -18,32 +18,33 @@ def login_empresa():
     return num_login, senha_login
 
 def login_parceiro():
-    
+#coleta de dados    
     print('precisamos de algumas informações para continuar com seu login:')
     while True:
-        cpf = int(input('CPF: '))
-        senha = input('Senha: ')
+        cpf_digitado = input('CPF: ')
+        senha_digitado = input('Senha: ')
+#abrir dados.json
         with open('dados.json', 'r', encoding='utf-8') as arquivos:
             dados = json.load(arquivos)
-
+ 
         parceiros = dados['parceiros']
-        senha = dados['parceiros']['cpf']['senha']
-        if cpf in parceiros:
-            cpf = True
-        else:
-            cpf = False
         
-        if senha in senha:
-            senha = True
-        else:
-            senha = False
+#conferindo se cpf existe nos dados separando cpf digitado com a variavel criada em True ou False.
+        parceiro = parceiros[cpf_digitado]
 
-        if cpf and senha == True:
-            print('login bem sucedido')
-            menu_interacao()
+        cpf_existe = cpf_digitado in parceiros
+
+#confirmação de senha separação da senha no mesmoi estilo do cpf
+        senha_salva = parceiro['senha']
+
+#comparação de senha salva com digitada
+        senha_conf = senha_digitado == senha_salva
+
+        if cpf_existe and senha_conf:
+            print('Login correto')
+
         else:
-            print('login ou senha invalida')
-            input('pressione qualquer tecla para tentar novamente... ')
+            print('Login ou senha incorreta')
 
         with open('dados.json', 'r', encoding='uft-8') as arquivos:
             dados = json.load(arquivos)
