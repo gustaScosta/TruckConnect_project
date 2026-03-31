@@ -27,7 +27,7 @@ def login_parceiro():
             dados = json.load(arquivos)
 
         parceiros = dados['parceiros']
-        senha = dados['parceiros']['senha']
+        senha = dados['parceiros']['cpf']['senha']
         if cpf in parceiros:
             cpf = True
         else:
@@ -45,6 +45,8 @@ def login_parceiro():
             print('login ou senha invalida')
             input('pressione qualquer tecla para tentar novamente... ')
 
+        with open('dados.json', 'r', encoding='uft-8') as arquivos:
+            dados = json.load(arquivos)
 
 
 def cadastro_parceiro():
