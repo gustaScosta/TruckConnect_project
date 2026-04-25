@@ -24,7 +24,7 @@ def salvar_dados(dados):
 def login_empresa():
     while True:
         print('Login da empresa... ')
-        cnpj_digitado = int(input('insira o CNPJ: ').replace('-','').replace("/", "").replace("-", "").replace(" ", ""))
+        cnpj_digitado = input('insira o CNPJ: ').replace('-','').replace("/", "").replace("-", "").replace(" ", "")
         senha_digitado = input('insira o senha: ')
 
         dados = ler_dados()
@@ -41,12 +41,13 @@ def login_empresa():
         if senha_confirm:
             print('senha confirmada.')
             input("Pressione Enter para voltar ao menu...")
-            return True
+            return cnpj_digitado
         else:
             print('senha incorreta.')
             input('precione qualquer tecla para tentar novamente... ')
             continue
-        
+    return cnpj_digitado
+
 def login_parceiro():
     print("Precisamos de algumas informacoes para continuar com seu login:")
 
@@ -70,19 +71,19 @@ def login_parceiro():
         if senha_confere:
             print("Login correto.")
             input("Pressione Enter para voltar ao menu...")
-            return True
+            return cpf_digitado
 
         print("Senha incorreta.")
         input("Pressione Enter para tentar novamente...")
         limpar_terminal()
-
+    return cpf_digitado
 
 def cadastro_parceiro():
     while True:
         print("Preencha os campos a seguir corretamente:")
         cpf = input("CPF (somente numeros): ")
         cnh = input("Numero da CNH: ")
-        nome = input("Nome: ").upper().replace(" ", "_")
+        nome = input("Nome: ").title()
         data = input("Data de nascimento: ").replace("/", "").replace("-", "").replace(" ", "")
         senha = input("Senha: ")
 
