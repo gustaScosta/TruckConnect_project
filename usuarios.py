@@ -25,10 +25,10 @@ def login_empresa():
     while True:
         print('Login da empresa... ')
         cnpj_digitado = int(input('insira o CNPJ: ').replace('-','').replace("/", "").replace("-", "").replace(" ", ""))
-        senha_digitado = int(input('insira o senha: ').replace('-','').replace("/", "").replace("-", "").replace(" ", ""))
+        senha_digitado = input('insira o senha: ')
 
         dados = ler_dados()
-        empresas = dados['CNPJ']
+        empresas = dados['empresas']
         if cnpj_digitado not in empresas:
             print('empresa não encontrada.')
             input("Pressione Enter para tentar novamente...")
@@ -38,7 +38,7 @@ def login_empresa():
         empresa = empresas[cnpj_digitado]
         senha_confirm = senha_digitado == empresa['senha']
 
-        if senha_confirm == True:
+        if senha_confirm:
             print('senha confirmada.')
             input("Pressione Enter para voltar ao menu...")
             return True
