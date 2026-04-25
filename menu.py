@@ -1,3 +1,5 @@
+from usuarios import cadastro_empresa, cadastro_parceiro, login_empresa, login_parceiro
+
 import json
 import os
 
