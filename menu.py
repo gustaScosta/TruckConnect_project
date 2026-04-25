@@ -85,13 +85,14 @@ def menu_principal():
 
         if ini_servico == 1:
             limpar_terminal()
-            login_empresa()
-            input("Pressione Enter para voltar ao menu...")
+            cnpj = login_empresa()
+            menu_empresa(cnpj)
             continue
 
         if ini_servico == 2:
             limpar_terminal()
-            login_parceiro()
+            cpf = login_parceiro()
+            menu_parceiro(cpf)
             continue
 
         if ini_servico == 3:
@@ -107,10 +108,84 @@ def menu_principal():
         print("Opcao invalida.")
         input("Pressione Enter para continuar...")
 
+def postar_carga():
+    pass
+
+
+def menu_empresa(cnpj):
+    while True:
+        dados = ler_dados()
+        dados_em = dados['empresas'][cnpj]
+        nome_em = dados_em['nome']
+
+        limpar_terminal()
+        print('Bem vindo aom menu de sua empresa')
+        print(f'dados da empresa:{nome_em}')
+        print('1. cadastrar nova carga')
+        print('2. ver minhas cargas')
+        print('3. sair')
+
+        try:
+            opcao = int(input('escolha a opção: '))
+        except ValueError:
+            limpar_terminal()
+            print('nenhuma opçãom selecionada')
+            input('pressione qualquer tecla para continuar...')
+            continue
+        if opcao == 1:
+            limpar_terminal()
+            print('em construção')
+            input('pressione qualquer tecla para continuar... ')
+            continue
+        elif opcao == 2:
+            limpar_terminal()
+            print('em construção')
+            input('pressione qualquer tecla para continuar... ')
+            continue
+        elif opcao == 3:
+            limpar_terminal()
+            print('saindo... ')
+            return
+
+
+def menu_parceiro(cpf):
+    while True:
+
+        dados = ler_dados()
+        dados_par = dados['parceiros'][cpf]
+        nome_par = dados_par['nome']
+    
+        limpar_terminal()
+        print(f'Bem vindo ao seu menu de parceiro {nome_par}')
+        print('1. ver cargas disponiveis')
+        print('2. ver minhas propostas')
+        print('3. sair')
+
+        try:
+            opcao = int(input('escolha a opção: '))
+        except ValueError:
+            limpar_terminal()
+            print('nenhuma opçãom selecionada')
+            input('pressione qualquer tecla para continuar...')
+            continue
+        if opcao == 1:
+            limpar_terminal()
+            print('em construção')
+            input('pressione qualquer tecla para continuar... ')
+            continue
+        elif opcao == 2:
+            limpar_terminal()
+            print('em construção')
+            input('pressione qualquer tecla para continuar... ')
+            continue
+        elif opcao == 3:
+            limpar_terminal()
+            print('saindo... ')
+            return
+
 
 def main():
     menu_principal()
-
 
 if __name__ == "__main__":
     main()
