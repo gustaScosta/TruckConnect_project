@@ -1,26 +1,8 @@
+from funções import limpar_terminal, ler_dados, saida
 from usuarios import cadastro_empresa, cadastro_parceiro, login_empresa, login_parceiro
 
 import json
 import os
-
-
-ARQUIVO_DADOS = "dados.json"
-
-
-def limpar_terminal():
-    os.system("cls")
-
-
-def ler_dados():
-    # Centraliza a leitura do JSON para evitar repeticao.
-    with open(ARQUIVO_DADOS, "r", encoding="utf-8") as arquivo:
-        return json.load(arquivo)
-
-
-def salvar_dados(dados):
-    # Salva os dados formatados de volta no arquivo.
-    with open(ARQUIVO_DADOS, "w", encoding="utf-8") as arquivo:
-        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
         
 def escolha_cadastro():
     while True:
@@ -79,10 +61,10 @@ def menu_principal():
         try:
             ini_servico = int(input("Escolha uma das opcoes citadas: "))
         except ValueError:
-            print("Opcao invalida.")
-            input("Pressione Enter para continuar...")
-            continue
-
+            if saida():
+                continue
+            return
+                
         if ini_servico == 1:
             limpar_terminal()
             cnpj = login_empresa()
@@ -102,15 +84,7 @@ def menu_principal():
 
         if ini_servico == 4:
             limpar_terminal()
-            print("Saindo do sistema...")
             return
-
-        print("Opcao invalida.")
-        input("Pressione Enter para continuar...")
-
-def postar_carga():
-    pass
-
 
 def menu_empresa(cnpj):
     while True:
@@ -129,9 +103,18 @@ def menu_empresa(cnpj):
             opcao = int(input('escolha a opção: '))
         except ValueError:
             limpar_terminal()
-            print('nenhuma opçãom selecionada')
-            input('pressione qualquer tecla para continuar...')
-            continue
+            print("""
+opção inválida
+        1. continuar
+        2. encerrar                
+                      """)            
+            invalida = int(input('escolha: '))
+            if invalida == 1:
+                continue
+            else:
+                limpar_terminal()
+                return
+            
         if opcao == 1:
             limpar_terminal()
             print('em construção')
@@ -164,10 +147,8 @@ def menu_parceiro(cpf):
         try:
             opcao = int(input('escolha a opção: '))
         except ValueError:
-            limpar_terminal()
-            print('nenhuma opçãom selecionada')
-            input('pressione qualquer tecla para continuar...')
-            continue
+            saida()
+            
         if opcao == 1:
             limpar_terminal()
             print('em construção')

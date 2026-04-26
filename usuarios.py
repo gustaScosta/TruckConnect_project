@@ -1,25 +1,7 @@
+from funções import limpar_terminal, ler_dados, salvar_dados
+
 import json
 import os
-
-
-ARQUIVO_DADOS = "dados.json"
-
-
-def limpar_terminal():
-    os.system("cls")
-
-
-def ler_dados():
-    # Centraliza a leitura do JSON para evitar repeticao.
-    with open(ARQUIVO_DADOS, "r", encoding="utf-8") as arquivo:
-        return json.load(arquivo)
-
-
-def salvar_dados(dados):
-    # Salva os dados formatados de volta no arquivo.
-    with open(ARQUIVO_DADOS, "w", encoding="utf-8") as arquivo:
-        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
-
 
 def login_empresa():
     while True:
