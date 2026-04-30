@@ -1,5 +1,6 @@
 from funções import limpar_terminal, ler_dados, saida
 from usuarios import cadastro_empresa, cadastro_parceiro, login_empresa, login_parceiro
+from fretes import postar_carga
 
 import json
 import os
@@ -117,8 +118,7 @@ opção inválida
             
         if opcao == 1:
             limpar_terminal()
-            print('em construção')
-            input('pressione qualquer tecla para continuar... ')
+            postar_carga()
             continue
         elif opcao == 2:
             limpar_terminal()

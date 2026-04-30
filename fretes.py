@@ -1,5 +1,7 @@
 from funções import limpar_terminal, ler_dados, salvar_dados
+from usuarios import login_empresa
 
+cnpj = login_empresa()
 
 def postar_carga(cnpj):
     limpar_terminal()
