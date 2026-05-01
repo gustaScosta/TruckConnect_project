@@ -9,8 +9,14 @@
             "nome": "senai",
             "senha": "741",
             "cnpj": "741852"
+        },
+        "            ": {
+            "nome": "",
+            "senha": "",
+            "cnpj": ""
         }
     },
+
     "parceiros": {
         "789": {
             "nome": "Gustavo De Souza Costa",
@@ -19,5 +25,8 @@
             "cnh": "741"
         }
     },
-    "fretes": {}
+    "fretes": {
+
+        
+    }
 }

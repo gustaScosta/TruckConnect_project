@@ -3,20 +3,29 @@ from funções import limpar_terminal, ler_dados, salvar_dados
 import json
 import os
 
+
 def login_empresa():
     while True:
         print('Login da empresa... ')
         cnpj_digitado = input('insira o CNPJ: ').replace('-','').replace("/", "").replace("-", "").replace(" ", "")
-        senha_digitado = input('insira o senha: ')
 
         dados = ler_dados()
         empresas = dados['empresas']
         if cnpj_digitado not in empresas:
-            print('empresa não encontrada.')
-            input("Pressione Enter para tentar novamente...")
             limpar_terminal()
-            continue
+            print('empresa não encontrada.')
+            print('''
+Caso deseje sair pressione X, 
+caso queira continuar pressione qualquer tecla.
+''')
+            resposta = input('O que deseja: ').lower()
+            limpar_terminal()
+            if resposta == 'x':
+                return
+            continue     
         
+        senha_digitado = input('insira o senha: ')
+
         empresa = empresas[cnpj_digitado]
         senha_confirm = senha_digitado == empresa['senha']
 
@@ -35,17 +44,24 @@ def login_parceiro():
 
     while True:
         cpf_digitado = input("CPF: ")
-        senha_digitada = input("Senha: ")
 
         dados = ler_dados()
         parceiros = dados["parceiros"]
 
         # Primeiro validamos se o CPF existe para evitar erro de chave.
         if cpf_digitado not in parceiros:
-            print("CPF nao encontrado.")
-            input("Pressione Enter para tentar novamente...")
             limpar_terminal()
+            print("CPF nao encontrado.")
+            print('''
+Caso deseje sair pressione X, 
+caso queira continuar pressione qualquer tecla.
+    ''')
+            resposta = input('O que deseja: ').lower()
+            if resposta == 'x':
+                return
             continue
+
+        senha_digitada = input("Senha: ")
 
         parceiro = parceiros[cpf_digitado]
         senha_confere = senha_digitada == parceiro["senha"]
@@ -72,10 +88,45 @@ def cadastro_parceiro():
         dados = ler_dados()
         parceiros = dados["parceiros"]
 
+        if cpf == '':
+            print("impossivel cadastrar esse cpf")
+            print("Refaça o cadastro ou faça o login.")
+            input("Pressione Enter para continuar...")
+            limpar_terminal()
+            continue
+
+        if cnh == '':
+            print("impossivel cadastrar esse cnh")
+            print("Refaça o cadastro ou faça o login.")
+            input("Pressione Enter para continuar...")
+            limpar_terminal()
+            continue
+
+        if nome == '':
+            print("impossivel cadastrar esse nome")
+            print("Refaça o cadastro ou faça o login.")
+            input("Pressione Enter para continuar...")
+            limpar_terminal()
+            continue
+
+        if data == '':
+            print("impossivel cadastrar esse data")
+            print("Refaça o cadastro ou faça o login.")
+            input("Pressione Enter para continuar...")
+            limpar_terminal()
+            continue
+
+        if senha == '':
+            print("impossivel cadastrar esse senha")
+            print("Refaça o cadastro ou faça o login.")
+            input("Pressione Enter para continuar...")
+            limpar_terminal()
+            continue
+
         # CPF e chave unica; se existir, nao podemos cadastrar novamente.
         if cpf in parceiros:
             print("CPF ja cadastrado.")
-            print("Refaca o cadastro ou faca o login.")
+            print("Refaça o cadastro ou faça o login.")
             input("Pressione Enter para continuar...")
             limpar_terminal()
             continue
