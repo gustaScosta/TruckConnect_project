@@ -15,10 +15,9 @@ def escolha_cadastro():
         try:
             escolha_cadastro = int(input("Escolha qual seu tipo de cadastro: "))
         except ValueError:
-            limpar_terminal()
-            print("Opcao invalida.")
-            input("Pressione Enter para continuar...")
-            continue
+            if saida():
+                continue
+            return
 
         if escolha_cadastro == 1:
             limpar_terminal()
@@ -63,19 +62,21 @@ def menu_principal():
             ini_servico = int(input("Escolha uma das opcoes citadas: "))
         except ValueError:
             if saida():
-                continue
-            return
+                return
+            continue
                 
         if ini_servico == 1:
             limpar_terminal()
             cnpj = login_empresa()
-            menu_empresa(cnpj)
+            if cnpj:
+                menu_empresa(cnpj)
             continue
 
         if ini_servico == 2:
             limpar_terminal()
             cpf = login_parceiro()
-            menu_parceiro(cpf)
+            if cpf:
+                menu_parceiro(cpf)
             continue
 
         if ini_servico == 3:
@@ -103,22 +104,13 @@ def menu_empresa(cnpj):
         try:
             opcao = int(input('escolha a opção: '))
         except ValueError:
-            limpar_terminal()
-            print("""
-opção inválida
-        1. continuar
-        2. encerrar                
-                      """)            
-            invalida = int(input('escolha: '))
-            if invalida == 1:
-                continue
-            else:
-                limpar_terminal()
+            if saida():
                 return
-            
+            continue
+        
         if opcao == 1:
             limpar_terminal()
-            postar_carga()
+            postar_carga(cnpj)
             continue
         elif opcao == 2:
             limpar_terminal()
@@ -147,7 +139,9 @@ def menu_parceiro(cpf):
         try:
             opcao = int(input('escolha a opção: '))
         except ValueError:
-            saida()
+            if saida():
+                return
+            continue
             
         if opcao == 1:
             limpar_terminal()
