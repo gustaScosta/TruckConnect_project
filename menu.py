@@ -158,7 +158,6 @@ def menu_parceiro(cpf):
             print('saindo... ')
             return
 
-
 def main():
     menu_principal()
 
