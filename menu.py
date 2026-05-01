@@ -213,7 +213,6 @@ def menu_principal():
             print('Opção inválida.')
             input('Pressione Enter para continuar...')
 
-
 def main():
     limpar_terminal()
     menu_principal()
