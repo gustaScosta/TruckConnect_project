@@ -1,32 +1,11 @@
 {
     "empresas": {
-        "54531307844": {
-            "nome": "gus",
-            "senha": "gus",
-            "cnpj": "54531307844"
-        },
-        "741852": {
-            "nome": "senai",
-            "senha": "741",
-            "cnpj": "741852"
-        },
-        "            ": {
-            "nome": "",
-            "senha": "",
-            "cnpj": ""
-        }
-    },
 
+    },
     "parceiros": {
-        "789": {
-            "nome": "Gustavo De Souza Costa",
-            "data": "05102007",
-            "senha": "741",
-            "cnh": "741"
-        }
+        
     },
     "fretes": {
-
         
     }
 }
