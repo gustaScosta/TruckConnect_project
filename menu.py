@@ -51,13 +51,17 @@ def menu_principal():
        ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
         """
         )
-
-        print("Bem-vindo ao TrunckConnect")
-        print("1. Login Empresa")
-        print("2. Login Parceiro")
-        print("3. Cadastro")
-        print("4. Sair")
-
+        print('''
+========================================
+    Bem-vindo ao TrunckConnect
+========================================
+1. Login Empresa
+2. Login Parceiro             
+3. Cadastro
+4. Sair
+****************************************
+''')
+        
         try:
             ini_servico = int(input("Escolha uma das opcoes citadas: "))
         except ValueError:
@@ -121,7 +125,6 @@ def menu_empresa(cnpj):
             limpar_terminal()
             print('saindo... ')
             return
-
 
 def menu_parceiro(cpf):
     while True:
