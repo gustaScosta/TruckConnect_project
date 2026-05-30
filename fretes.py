@@ -28,9 +28,32 @@ opção inválida
             else:
                 limpar_terminal()
                 return    
+            
+class carga:
+    def __init__(self, id_carga, nome, empresa_cnpj, origem, destino, peso, valor):
+        self.id_carga = id_carga
+        self.nome = nome
+        self.empresa_cnpj = empresa_cnpj
+        self.origem = origem
+        self.destino = destino
+        self.peso = peso
+        self.valor = valor
+        self.status = "DISPONIVEL"
+        self.motorista_cpf = None
+
+    def reservar(self, cpf_motorista): 
+        if self.status == "DISPONIVEL":
+            self.status = "RESERVADO"
+            self.motorista_cpf = cpf_motorista
+
+            print('carga reservado com sucesso!')
+            return True
+        else:
+            print("Desculpe, esta carga não está mais disponível.")
+            return False
+
 
 def main():
     postar_carga(cnpj)
 if __name__ == '__main__':
     main()
-    
